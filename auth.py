@@ -4,19 +4,28 @@ from db_data import db_session
 from db_data.users import User
 from forms.user import RegisterForm, LoginForm
 from app_file import get_app
+from mail import send_confirmation_email
 
 
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login', methods=['GET'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.login == form.name.data).first()
-        if user.check_password(form.password.data) and user.is_confirmed == 1:
+        print(db_sess.query(User).first().login)
+        print(form.name.data)
+        print(db_sess.query(User).first().login == form.name.data)
+        if not user:
+            return render_template('login_.html', title='Вход', form=form)
+        if user.check_password(form.password.data) and user.is_confirmed != 1:
+            send_confirmation_email(user)
             return render_template('please_confirm_.html', title='Confirm')
+        elif user.check_password(form.password.data):
+            return redirect(url_for(get_app().index))
     return render_template('login_.html', title='Вход', form=form)
 
 

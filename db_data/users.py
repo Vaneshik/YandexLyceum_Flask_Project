@@ -25,9 +25,10 @@ class User(SqlAlchemyBase):
                             backref="products")
 
     def get_token(self, expires_in=600):
-        return jwt.encode(
+        tok = jwt.encode(
             {'token': self.id, 'exp': time() + expires_in},
-            get_app().config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+            get_app().config['SECRET_KEY'], algorithm='HS256')
+        return tok
 
     @staticmethod
     def verify_token(token):

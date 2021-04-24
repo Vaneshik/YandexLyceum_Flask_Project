@@ -21,7 +21,7 @@ def send_email(subject, sender, recipient, text_body, html_body):
 
 
 def send_confirmation_email(user):
-    token = user.get_reset_password_token()
+    token = user.get_token()
     send_email('Confirm your account',
                sender=app.config['ADMINS'][0],
                recipient=user.email,
