@@ -1,6 +1,10 @@
 import sqlalchemy
 from .db_session import SqlAlchemyBase
 from sqlalchemy import orm
+from time import time
+import jwt
+from app_file import get_app
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(SqlAlchemyBase):
@@ -14,7 +18,28 @@ class User(SqlAlchemyBase):
                               index=True, unique=True, nullable=False)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     is_admin = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False, default=False)
+    is_confirmed = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False, default=False)
 
     products = orm.relation("Product",
                             secondary="products_to_users",
                             backref="products")
+
+    def get_token(self, expires_in=600):
+        return jwt.encode(
+            {'token': self.id, 'exp': time() + expires_in},
+            get_app().config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_token(token):
+        try:
+            id = jwt.decode(token, get_app().config['SECRET_KEY'],
+                            algorithms=['HS256'])['token']
+        except Exception:
+            return
+        return User.query.get(id)
+
+    def set_password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.hashed_password, password)

@@ -3,7 +3,7 @@ from flask_login import login_user
 from db_data import db_session
 from db_data.users import User
 from forms.user import RegisterForm, LoginForm
-import app_file
+from app_file import get_app
 
 
 auth = Blueprint('auth', __name__)
@@ -14,12 +14,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        query = db_sess.query(User).filter(User.login == form.name.data)
-        app = app_file.get_app()
-        for user in query:
-            if user.check_password(form.password.data):
-                login_user(user)
-                return redirect(url_for(app.index))
+        user = db_sess.query(User).filter(User.login == form.name.data).first()
+        if user.check_password(form.password.data) and user.is_confirmed == 1:
+            return render_template('please_confirm_.html', title='Confirm')
     return render_template('login_.html', title='Вход', form=form)
 
 
@@ -47,3 +44,15 @@ def signup():
         db_sess.commit()
         return redirect('/login')
     return render_template('signup_.html', title='Регистрация', form=form)
+
+
+@auth.route('/confirm/<token>', methods=['GET'])
+def confirm(token):
+    user = User.verify_reset_password_token(token)
+    if not user:
+        return render_template('expired_.html')
+    db_sess = db_session.create_session()
+    user.is_confirmed = True
+    db_sess.commit()
+    login_user(user)
+    return render_template('confirmed_.html')
