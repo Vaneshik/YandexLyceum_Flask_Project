@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for
 from db_data import db_session
 from db_data.users import User
 from forms.user import RegisterForm, LoginForm
+import app_file
 
 
 auth = Blueprint('auth', __name__)
@@ -13,10 +14,11 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         query = db_sess.query(User).filter(User.login == form.name.data)
+        app = app_file.get_app()
         for user in query:
             if user.check_password(form.password.data):
-                return redirect("????") # fix
-    return render_template('login_.html')
+                return redirect(app.index)
+    return render_template('login_.html', title='Вход', form=form)
 
 
 @auth.route('/signup', methods=['GET', 'POST'])

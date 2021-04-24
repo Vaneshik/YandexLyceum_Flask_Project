@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template
 from db_data import db_session
 from auth import auth as auth_blueprint
+import app_file
 
-
-app = Flask(__name__)
+app = app_file.get_app()
 app.config['SECRET_KEY'] = '123'
 
 
