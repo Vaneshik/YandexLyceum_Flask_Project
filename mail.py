@@ -5,11 +5,19 @@ from threading import Thread
 
 
 app = get_app()
+app.config['ADMINS'] = ['hikariakumalocalstore@gmail.com', 'denis.r.vasiuk@gmail.com']
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'hikariakumalocalstore@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Sormat0897'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 
 def send_async_email(app, msg):
     with app.app_context():
+        mail.connect()
         mail.send(msg)
 
 

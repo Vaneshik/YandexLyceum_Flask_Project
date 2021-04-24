@@ -5,6 +5,10 @@ from time import time
 import jwt
 from app_file import get_app
 from werkzeug.security import generate_password_hash, check_password_hash
+from app_file import get_login_manager
+
+
+login_manager = get_login_manager()
 
 
 class User(SqlAlchemyBase):
@@ -37,7 +41,7 @@ class User(SqlAlchemyBase):
                             algorithms=['HS256'])['token']
         except Exception:
             return
-        return User.query.get(id)
+        return id
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
