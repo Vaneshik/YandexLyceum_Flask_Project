@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for
+from flask_login import login_user
 from db_data import db_session
 from db_data.users import User
 from forms.user import RegisterForm, LoginForm
@@ -17,7 +18,8 @@ def login():
         app = app_file.get_app()
         for user in query:
             if user.check_password(form.password.data):
-                return redirect(app.index)
+                login_user(user)
+                return redirect(url_for(app.index))
     return render_template('login_.html', title='Вход', form=form)
 
 
