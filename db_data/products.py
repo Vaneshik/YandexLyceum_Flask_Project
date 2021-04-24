@@ -18,15 +18,12 @@ class Product(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    name = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)
     pics = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     content = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     amount = sqlalchemy.Column(sqlalchemy.Integer, default=0)
+    is_aviable = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
 
     categories = orm.relation("Category",
                               secondary="categories_to_products",
                               backref="categories")
-
-    products = orm.relation("User",
-                            secondary="products_to_users",
-                            backref="users")
