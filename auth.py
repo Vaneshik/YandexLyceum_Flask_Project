@@ -64,7 +64,7 @@ def signup():
 def confirm(token):
     id = User.verify_token(token)
     db_sess = db_session.create_session()
-    user = load_user(id)
+    user =  db_sess.query(User).filter(User.id == id).first()
     if not user:
         return render_template('expired_.html')
     db_sess.delete(user)
