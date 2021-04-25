@@ -24,7 +24,7 @@ class Product(SqlAlchemyBase):
     content = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     amount = sqlalchemy.Column(sqlalchemy.Integer, default=0)
     price = sqlalchemy.Column(sqlalchemy.Integer, default=100, nullable=False)
-    is_aviable = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
+    is_avilable = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
 
     categories = orm.relation("Category",
                               secondary="categories_to_products",

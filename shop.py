@@ -1,11 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from db_data import db_session
 from db_data.products import Product
 from forms.product import *
+import stripe
 
 
 shop = Blueprint('shop', __name__)
+publishable_key = 'pk_test_51IivHBL5CLahxtbO4F6MO50SssgTZPNP85x7Fdmo4PUiHWeFy1AWTcEuvLFLmQf9cRKOa6LCod6ATXeck0yqhbuM00C31c2qnp'
 
 
 def get_best_prods(n):
@@ -53,13 +55,34 @@ def add_to_cart(id):
     prod = db_sess.query(Product).filter(Product.id == id).first()
     user = current_user
     amount = form.amount.data
-    user.products.append(prod)
-    # set amount somehow
+    user.products.append(prod, amount)
     db_sess.merge(user)
     db_sess.commit()
     return render_template('added_.html')
 
 
-@shop.route('/checkout')
+@shop.route('/checkout', methods=['GET'])
+@login_required
 def checkout():
     user = current_user
+    prods = user.products
+    price = sum(prod[0].price * prod[1] for prod in prods)
+    return render_template('chechout_.html', **{'prods': prods, 'price': price})
+
+
+@shop.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+    prods = current_user.products
+    price = sum(prod[0].price * prod[1] for prod in prods)
+    customer = stripe.Customer.create(
+        email='customer@example.com',
+        source=request.form['stripeToken']
+    )
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=price * 100,
+        currency='rub',
+        description='Buy Charge'
+    )
+    return render_template('charge_.html', amount=price, key=publishable_key)

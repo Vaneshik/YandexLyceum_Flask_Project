@@ -1,0 +1,13 @@
+<form action="/charge" method="post">
+  <article>
+    <label>
+      <span>Amount is </span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="{{ key }}"
+          data-description="A Payment Charge"
+          data-amount="{{ amount }}"
+          data-locale="auto"></script>
+</form>

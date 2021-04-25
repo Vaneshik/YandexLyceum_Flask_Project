@@ -15,7 +15,7 @@ count = 0
 
 logs = open("logs.txt", "w")
 
-db_session.global_init('db/shop.db')
+db_session.global_init('db/shop.sqlite')
 
 main_req = get(main_url)
 parser1 = BeautifulSoup(main_req.content, "lxml")
