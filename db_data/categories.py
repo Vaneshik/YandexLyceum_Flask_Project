@@ -2,7 +2,6 @@ import sqlalchemy
 from .db_session import SqlAlchemyBase
 from sqlalchemy import orm
 
-
 association_table = sqlalchemy.Table(
     'categories_to_products',
     SqlAlchemyBase.metadata,
@@ -16,9 +15,9 @@ association_table = sqlalchemy.Table(
 class Category(SqlAlchemyBase):
     __tablename__ = 'categories'
 
-    id = sqlalchemy.Column(sqlalchemy.Integer,
-                           primary_key=True, autoincrement=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    id = sqlalchemy.Column(sqlalchemy.Integer, autoincrement=True)
+    name = sqlalchemy.Column(sqlalchemy.String,
+                             primary_key=True, nullable=False, unique=True)
     type_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("types.id"))
     type = orm.relation('Type')
