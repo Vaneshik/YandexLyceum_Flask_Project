@@ -15,6 +15,8 @@ count = 0
 
 logs = open("logs.txt", "w")
 
+db_session.global_init('db/shop.db')
+
 main_req = get(main_url)
 parser1 = BeautifulSoup(main_req.content, "lxml")
 all_categories = parser1.find_all("span", {"class": "category-menu-item"})
@@ -97,7 +99,7 @@ for url in filtered_categories_href:
                             price=ITEM_PRICE
                         )
 
-                        product.categories.add(category)
+                        product.categories.append(category)
                         db_sess.add(product)
                         db_sess.commit()
 
