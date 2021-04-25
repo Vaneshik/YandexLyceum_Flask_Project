@@ -9,7 +9,8 @@ association_table = sqlalchemy.Table(
     sqlalchemy.Column('users', sqlalchemy.Integer,
                       sqlalchemy.ForeignKey('users.id')),
     sqlalchemy.Column('products', sqlalchemy.Integer,
-                      sqlalchemy.ForeignKey('products.id'))
+                      sqlalchemy.ForeignKey('products.id')),
+    sqlalchemy.Column('quantity', sqlalchemy.Integer, default=1)
 )
 
 

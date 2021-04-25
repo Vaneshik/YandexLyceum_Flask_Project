@@ -50,8 +50,7 @@ def signup():
                                    message="Такой пользователь уже есть")
         user = User(
             login=form.name.data,
-            email=form.email.data,
-            is_admin=False
+            email=form.email.data
         )
         user.set_password(form.password.data)
         db_sess.add(user)
