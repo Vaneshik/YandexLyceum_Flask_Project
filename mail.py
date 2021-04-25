@@ -37,3 +37,14 @@ def send_confirmation_email(user):
                                          user=user, token=token),
                html_body=render_template('confirmation_mail.html',
                                          user=user, token=token))
+
+
+def send_reset_email(user):
+    token = user.get_token()
+    send_email('Reset password',
+               sender=app.config['ADMINS'][0],
+               recipient=user.email,
+               text_body=render_template('reset.txt',
+                                         user=user, token=token),
+               html_body=render_template('reset.html',
+                                         user=user, token=token))
