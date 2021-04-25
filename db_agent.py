@@ -1,7 +1,7 @@
-import db_data.db_session
+import db_data.db_session as db_session
 
 from db_data.users import User
-from db_data.product import Product
+from db_data.products import Product
 from db_data.categories import Category
 from db_data.categories_types import Type
 
@@ -10,7 +10,7 @@ class AddError(Exception):
     pass
 
 
-def init() -> Session:
+def init():
     db_session.global_init("db/shop.db")
     global sess
     sess = db_session.create_session()
