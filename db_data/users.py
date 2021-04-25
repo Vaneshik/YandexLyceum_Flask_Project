@@ -23,6 +23,7 @@ class User(SqlAlchemyBase):
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     is_admin = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False, default=False)
     is_confirmed = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False, default=False)
+    is_active = sqlalchemy.Column(sqlalchemy.Boolean, nullable=False, default=False)
 
     products = orm.relation("Product",
                             secondary="products_to_users",

@@ -14,7 +14,7 @@ login_manager = get_login_manager()
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
-    return db_sess.query(User).get(User.id == user_id)
+    return db_sess.query(User).filter(User.id == user_id).first()
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -22,7 +22,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        user = db_sess.query(User).get(User.login == form.name.data)
+        user = db_sess.query(User).filter(User.login == form.name.data).first()
         if not user:
             return render_template('login_.html', title='Вход', form=form)
         if user.check_password(form.password.data) and user.is_confirmed != 1:
@@ -62,14 +62,14 @@ def signup():
 
 @auth.route('/confirm/<token>', methods=['GET'])
 def confirm(token):
+    logout_user()
     id = User.verify_token(token)
     db_sess = db_session.create_session()
-    user =  db_sess.query(User).filter(User.id == id).first()
+    user = load_user(id)
     if not user:
         return render_template('expired_.html')
-    db_sess.delete(user)
     user.is_confirmed = True
-    db_sess.add(user)
+    db_sess.merge(user)
     db_sess.commit()
     login_user(user)
     return render_template('confirmed_.html')
