@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user
 from db_data import db_session
 from db_data.users import User
 from forms.user import *
-from app_file import get_app, get_login_manager
+from app_file import get_login_manager
 import mail
 
 
