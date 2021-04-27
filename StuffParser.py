@@ -4,10 +4,10 @@ import random
 import re
 from bs4 import BeautifulSoup
 from requests import get
-
-from db_data import db_session
-from db_data.products import Product
-from db_data.categories import Category
+#
+# from db_data import db_session
+# from db_data.products import Product
+# from db_data.categories import Category
 
 main_url = "https://animeshop-akki.ru/"
 sleep_time = 3
@@ -15,7 +15,7 @@ count = 0
 
 logs = open("logs.txt", "w")
 
-db_session.global_init('db/shop.sqlite')
+# db_session.global_init('db/shop.sqlite')
 
 main_req = get(main_url)
 parser1 = BeautifulSoup(main_req.content, "lxml")
@@ -28,7 +28,7 @@ filtered_categories_href = [elem for elem in all_categories_href if
                                 filter(lambda x: x, [href.startswith(elem) for href in
                                                      all_categories_href]))) == 1]
 filtered_categories_href.remove("svoy_dizayn/anime-opt/")
-
+print(filtered_categories_href)
 # for name in filtered_categories_href:
 #     if not os.path.isdir(f"static/img/{name.split('/')[0]}"):
 #         os.mkdir(f"static/img/{name.split('/')[0]}")
@@ -85,23 +85,23 @@ for url in filtered_categories_href:
                             f.write(item_img_content)
                             print("Картинка сохранена:", ITEM_LOCAL_PATH + "\n", file=logs)
 
-                        db_sess = db_session.create_session()
+                        # db_sess = db_session.create_session()
+                        #
+                        # category = Category(name=ITEM_CATEGORY)
+                        # db_sess.add(category)
+                        # category = db_sess.query(Category).filter(Category.name == ITEM_CATEGORY).first()
+                        #
+                        # product = Product(
+                        #     name=ITEM_NAME,
+                        #     pics='pics/' + ITEM_LOCAL_PATH.split('/')[-1],
+                        #     content=item_url,
+                        #     amount=ITEM_AMOUNT,
+                        #     price=ITEM_PRICE
+                        # )
 
-                        category = Category(name=ITEM_CATEGORY)
-                        db_sess.add(category)
-                        category = db_sess.query(Category).filter(Category.name == ITEM_CATEGORY).first()
-
-                        product = Product(
-                            name=ITEM_NAME,
-                            pics='pics/' + ITEM_LOCAL_PATH.split('/')[-1],
-                            content=item_url,
-                            amount=ITEM_AMOUNT,
-                            price=ITEM_PRICE
-                        )
-
-                        product.categories.append(category)
-                        db_sess.add(product)
-                        db_sess.commit()
+                        # product.categories.append(category)
+                        # db_sess.add(product)
+                        # db_sess.commit()
 
                         print(f"Товар \"{ITEM_NAME}\" успешно записан, номер={count}")
                         time.sleep(sleep_time)

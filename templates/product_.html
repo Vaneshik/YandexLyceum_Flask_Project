@@ -89,15 +89,15 @@
 </header>
     <section class="u-clearfix u-section-1" id="sec-d9b2">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <img src="/static/img/brelok-animemix.jpg" alt="" class="u-image u-image-round u-radius-10 u-image-1" data-image-width="1200" data-image-height="630">
+        <img src="{{url_for('static', filename='img/'+prod.pics)}}" alt="" class="u-image u-image-round u-radius-10 u-image-1" data-image-width="1200" data-image-height="630">
         <h3 class="u-custom-font u-font-montserrat u-text u-text-1">Стоймость:</h3>
-        <h2 class="u-custom-font u-font-montserrat u-text u-text-2">17110р<br>
+        <h2 class="u-custom-font u-font-montserrat u-text u-text-2">{{prod.price}}р<br>
         </h2>
-        <h2 class="u-custom-font u-font-montserrat u-text u-text-3">Брелок клоуна<br>
+        <h2 class="u-custom-font u-font-montserrat u-text u-text-3">{{prod.name}}<br>
         </h2>
-        <h3 class="u-custom-font u-font-montserrat u-text u-text-4">Категория: Мыло с пола<br>
+        <h3 class="u-custom-font u-font-montserrat u-text u-text-4">Категория: {{prod.categories[0].name}}<br>
         </h3>
-        <h3 class="u-custom-font u-font-montserrat u-text u-text-5">Доступно: 172<br>
+        <h3 class="u-custom-font u-font-montserrat u-text u-text-5">Доступно: {{prod.amount}}<br>
         </h3>
         <a href="shop" class="u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-font-montserrat u-radius-20 u-btn-1">В корзину</a>
       </div>

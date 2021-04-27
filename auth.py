@@ -24,7 +24,7 @@ def login():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.login == form.name.data).first()
         if not user:
-            return render_template('login_.html', title='Вход', form=form)
+            return render_template('login_.html', title='', form=form)
         if user.check_password(form.password.data) and user.is_confirmed != 1:
             mail.send_confirmation_email(user)
             return render_template('please_confirm_.html', title='Confirm')

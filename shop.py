@@ -5,19 +5,22 @@ from db_data.products import Product
 from forms.product import *
 import stripe
 
-
 shop = Blueprint('shop', __name__)
 publishable_key = 'pk_test_51IivHBL5CLahxtbO4F6MO50SssgTZPNP85x7Fdmo4PUiHWeFy1AWTcEuvLFLmQf9cRKOa6LCod6ATXeck0yqhbuM00C31c2qnp'
 
 
-def get_best_prods(n):
-    return []
+def get_best_prods(n, category="Акксесуары", page=1):
+    db_sess = db_session.create_session()
+    q = [db_sess.query(Product).get(i) for i in range(1, n+1)]
+    # q = [a[i] for i in range(1 + (page - 1) * 9, 10 + (page - 1) * 9)]
+    # print(q)
+    return q
 
 
-@shop.route('/', methods=['GET'])
-def index():
-    prods = get_best_prods(5)
-    return render_template('home_.html', **{'prods': prods})
+@shop.route('/shop', methods=['GET'])
+def market():
+    prods = get_best_prods(9, category=request.args.get("category"), page=request.args.get("page"))
+    return render_template('shop_.html', **{'prod': prods})
 
 
 def search_in_db(name):

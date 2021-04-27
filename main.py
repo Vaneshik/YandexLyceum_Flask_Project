@@ -1,10 +1,9 @@
 from db_data import db_session
 from auth import auth as auth_blueprint
-# from auth import signup as signup_blueprint
 from shop import shop as shop_blueprint
 import app_file
 import stripe
-from flask import render_template
+from flask import render_template, url_for
 
 app = app_file.get_app()
 app.config['SECRET_KEY'] = '123'
@@ -21,14 +20,14 @@ def index():
 #     return render_template("login.html")
 
 
-@app.route("/signup")
-def register():
-    return render_template("signup.html")
+# @app.route("/signup")
+# def signup():
+#     return render_template("signup_.html")
 
 
-@app.route("/shop")
-def shop():
-    return render_template("shop.html")
+# @app.route("/shop")
+# def shop():
+#     return render_template("shop.html")
 
 
 # @app.route("/cart")
@@ -54,8 +53,7 @@ def item():
 def main():
     db_session.global_init('db/shop.sqlite')
     app.register_blueprint(auth_blueprint)
-    # app.register_blueprint(auth_blueprint)
-    # app.register_blueprint(shop_blueprint)
+    app.register_blueprint(shop_blueprint)
     app.run()
 
 

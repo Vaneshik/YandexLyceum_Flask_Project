@@ -95,83 +95,83 @@
           <div class="u-repeater u-repeater-1">
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-1" data-image-width="1200" data-image-height="1500" src="images/1.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-3">брелок one piece</h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-4">$340.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-1">купить<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-1" data-image-width="1200" data-image-height="1500" src="{{url_for('static', filename='img/'+prod[0].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-3">{{prod[0].name}}</h4>
+                <h4 class="u-text u-text-custom-color-1 u-text-4">{{prod[0].price}}р</h4>
+                <a href="/product/{{prod[0].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-1">купить<br>
                 </a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-2">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-2" src="images/2.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-5">брелок one piece</h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-6">$8.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-2">Купить<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-2" src="{{url_for('static', filename='img/'+prod[1].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-5">{{prod[1].name}}</h4>
+                <h4 class="u-text u-text-custom-color-1 u-text-6">{{prod[1].price}}р</h4>
+                <a href="/product/{{prod[1].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-2">Купить<br>
                 </a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-3">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-3" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-7">брелок one piece<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-3" src="{{url_for('static', filename='img/'+prod[2].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-7">{{prod[2].name}}<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-8">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-3">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-8">{{prod[2].price}}р</h4>
+                <a href="/product/{{prod[2].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-3">Купить</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-4">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-4" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-9">Кусок лисы<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-4" src="{{url_for('static', filename='img/'+prod[3].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-9">{{prod[3].name}}<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-10">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-4">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-10">{{prod[3].price}}р</h4>
+                <a href="/product/{{prod[3].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-4">Купить</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-5">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-5" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-11">Кусок лисы<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-5" src="{{url_for('static', filename='img/'+prod[4].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-11">{{prod[4].name}}<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-12">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-5">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-12">{{prod[4].price}}р</h4>
+                <a href="/product/{{prod[4].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-5">Купить</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-6">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-6">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-6" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-13">Кусок лисы<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-6" src="{{url_for('static', filename='img/'+prod[5].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-13">{{prod[5].name}}р<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-14">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-6">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-14">{{prod[5].price}}</h4>
+                <a href="/product/{{prod[5].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-6">Купить</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-7">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-7">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-7" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-15">Кусок лисы<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-7" src="{{url_for('static', filename='img/'+prod[6].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-15">{{prod[6].name}}<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-16">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-7">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-16">{{prod[6].price}}р</h4>
+                <a href="/product/{{prod[6].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-7">Купить</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-8">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-8">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-8" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-17">Кусок лисы<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-8" src="{{url_for('static', filename='img/'+prod[7].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-17">{{prod[7].name}}<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-18">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-8">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-18">{{prod[7].price}}р</h4>
+                <a href="/product/{{prod[7].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-8">Купить</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-9">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-9">
-                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-9" src="images/3.svg">
-                <h4 class="u-custom-font u-font-montserrat u-text u-text-19">Кусок лисы<br>
+                <img alt="" class="u-expanded-width u-image u-image-round u-radius-20 u-image-9" src="{{url_for('static', filename='img/'+prod[8].pics)}}">
+                <h4 class="u-custom-font u-font-montserrat u-text u-text-19">{{prod[8].name}}<br>
                 </h4>
-                <h4 class="u-text u-text-custom-color-1 u-text-20">$27.00</h4>
-                <a href="" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-9">Купить</a>
+                <h4 class="u-text u-text-custom-color-1 u-text-20">{{prod[8].price}}р</h4>
+                <a href="/product/{{prod[8].id}}" class="u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-9">Купить</a>
               </div>
             </div>
           </div>
